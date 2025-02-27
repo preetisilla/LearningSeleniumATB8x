@@ -16,6 +16,7 @@ public class Selenium01 {
         EdgeOptions edgeOptions = new EdgeOptions();
         edgeOptions.addArguments("--window-size=1920,1080");
         edgeOptions.addArguments("--incognito");
+        edgeOptions.addArguments("headless");
 
         EdgeDriver edriver = new EdgeDriver(edgeOptions);
         edriver.get("https://app.vwo.com");
