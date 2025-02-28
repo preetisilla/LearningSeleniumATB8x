@@ -7,9 +7,11 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.testng.annotations.Test;
 
+import java.util.List;
+
 public class Selenium10_Task2 {
     @Test
-    public void testMethod10(){
+    public void testMethod10() throws InterruptedException {
 
         EdgeOptions edgeOptions = new EdgeOptions();
         edgeOptions.addArguments("--start-maximized");
@@ -28,7 +30,17 @@ public class Selenium10_Task2 {
         firstName.sendKeys("Preeti");
         WebElement lastName = driver.findElement(By.name("lastname"));
         lastName.sendKeys("Silla");
-//        List<WebElement> gender = driver.findElements(By.name("sex"));
-//        gender.get()
+        WebElement gender = driver.findElement(By.cssSelector("input[value='Female']"));
+        gender.click();
+        WebElement experience = driver.findElement(By.cssSelector("input[value='7']"));
+        experience.click();
+        WebElement datepicker = driver.findElement(By.id("datepicker"));
+        datepicker.sendKeys("12022025");
+        WebElement profession = driver.findElement(By.cssSelector("input[value='Automation Tester']"));
+        profession.click();
+        WebElement tools = driver.findElement(By.cssSelector("input[value='Selenium Webdriver']"));
+        tools.click();
+        Thread.sleep(3000);
+        driver.quit();
     }
 }
