@@ -1,4 +1,4 @@
-package com.thetestingacademy.SVG;
+package com.thetestingacademy.SVGShadowBox;
 
 import io.qameta.allure.Description;
 import org.openqa.selenium.By;
@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-public class Selenium20_Project2 {
+public class Selenium19_Project1 {
     WebDriver driver;
     @BeforeTest
     public void openBrowser(){
@@ -25,16 +25,18 @@ public class Selenium20_Project2 {
     @Description("Verify the search results")
     @Test
     public void test_flipkart_search(){
-        driver.get("https://www.amcharts.com/svg-maps/?map=india");
+        driver.get("https://www.flipkart.com/");
 
-        //local-name() or name() are xpath built in function
-        List<WebElement> states = driver.findElements(By.xpath("//*[local-name()='svg']/*[local-name()='g'][7]/*[local-name()='g']/*[local-name()='g']/*[local-name()='path']"));
-        for(WebElement state : states){
-            System.out.println(state.getAttribute("aria-label"));
-            if(state.getAttribute("aria-label").contains("Tripura")){
-                state.click();
-            }
+        driver.findElement(By.name("q")).sendKeys("macmini");
+
+        List<WebElement> svgElements = driver.findElements(By.xpath("//*[name()='svg']"));
+        svgElements.get(0).click();
+
+        List<WebElement> titleResults = driver.findElements(By.xpath("//div[contains(@data-id,'CPU')]"));
+        for(WebElement title: titleResults){
+            System.out.println(title.getText());
         }
+
     }
 
     @AfterTest
