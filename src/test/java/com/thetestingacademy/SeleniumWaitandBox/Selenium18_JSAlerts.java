@@ -45,5 +45,7 @@ public class Selenium18_JSAlerts {
 
         Assert.assertEquals(result.getText(),"You entered: Preeti");
 
+        driver.quit();
+
     }
 }
