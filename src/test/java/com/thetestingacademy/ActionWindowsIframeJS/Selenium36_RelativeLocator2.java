@@ -12,7 +12,7 @@ import java.util.List;
 
 import static org.openqa.selenium.support.locators.RelativeLocator.with;
 
-public class Selenium34_RelativeLocator1 {
+public class Selenium36_RelativeLocator2 {
     WebDriver driver;
     @BeforeTest
     public void openBrowser(){
@@ -22,30 +22,29 @@ public class Selenium34_RelativeLocator1 {
         driver = new EdgeDriver(edgeOptions);
     }
 
-    @Description("Relative Locator1")
+    @Description("Relative Locator2")
     @Test
-    public void testMethod34() throws InterruptedException {
-        driver.get("https://www.aqi.in/real-time-most-polluted-city-ranking");
+    public void testMethod36() throws InterruptedException {
+        driver.get("https://codepen.io/AbdullahSajjad/full/LYGVRgK");
 
         Thread.sleep(5000);
 
-        WebElement search = driver.findElement(By.xpath("//input[@placeholder='Search']"));
-        search.sendKeys("India" + Keys.ENTER);
+        driver.switchTo().frame("result");
 
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("window.scrollBy(0,500)");
+        WebElement submit = driver.findElement(By.xpath("//button[text()='Submit']"));
+        submit.click();
 
         Thread.sleep(3000);
 
-        List<WebElement> states = driver.findElements(By.xpath("//div[contains(@class,'location-name')]/p"));
+        WebElement username = driver.findElement(By.id("username"));
 
-        for(WebElement s : states){
-            //System.out.println(s.getText());
-            String s1 = driver.findElement(with(By.tagName("p")).toLeftOf(s)).getText();
-            String s2 = driver.findElement(with(By.tagName("span")).toRightOf(s)).getText();
-            System.out.println(s.getText() + "  " + s1 + "  " + s2);
+        WebElement label = driver.findElement(with(By.tagName("label")).above(username));
 
-        }
+        WebElement error = driver.findElement(with(By.tagName("small")).below(username));
+
+        System.out.println(label.getText());
+
+        System.out.println(error.getText());
 
     }
 
